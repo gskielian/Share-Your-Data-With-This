@@ -45,6 +45,12 @@ app.get('/static-example', function (req, res) {
   res.sendFile(public_dir + 'static-example.html');
 });
 
+
+//page not found
+app.use(function (req,res) {
+      res.render('404', {url:req.url});
+});
+
 //creates the server instance, and prints status message to console
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
