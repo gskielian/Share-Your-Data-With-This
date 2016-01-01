@@ -2,7 +2,7 @@
 A site which has real-time graphs and doubles as mobile chart backend.
 
 <p align="center">
-  <img src="./public/img/current-look.png">
+  <img src="./public/img/current-look.png" border="1">
 </p>
 
 
