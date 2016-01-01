@@ -1,32 +1,46 @@
 var http = require('http');
 var express = require('express');
-var exphbs = require('express-handlebars');
+var exp_hbs = require('express-handlebars');
 var path = require('path');
 
 var app = express();
 
+//directory for static html files
 var public_dir = './public/';
+
 //sets the port number
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname,'views'));
 app.engine('handlebars',
-           exphbs({defaultLayout: 'main'}));
+           exp_hbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
 //we'll have static files in ./public folder
 app.use(express.static(path.join(__dirname, 'public'))); 
 
 
+//Examples of how to serve dynamic and static views
 
-
-//this is what we see when we dial in to 127.0.0.1:3000
+//rendered homepage
 app.get('/', function (req, res) {
   res.render('index');
 });
+
+//custom rendered view
 app.get('/about', function (req, res) {
   res.render('about');
 });
 
+//dynamic content example
+app.get('/opened-at-timestamp', function (req, res) {
+  var time = Date.now();
+  res.render('opened-at-timestamp', {
+              timestamp: time,
+              username: 'Bob'
+  });
+});
+
+//serving static html files
 app.get('/static-example', function (req, res) {
   res.sendFile(public_dir + 'static-example.html');
 });
