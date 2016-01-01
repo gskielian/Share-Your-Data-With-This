@@ -1,0 +1,27 @@
+<p>this is a placeholder for the data page</p>
+
+<p>
+collection is: {{collection}}
+</p>
+
+
+<p>
+{{objects}}
+</p>
+<p>
+{{#each objects}}
+    <p>
+    Key: {{@key}}
+    </p>
+    <p>
+    Key: {{this.title}}
+    </p>
+    <p>
+    Key: {{this._id}}
+    </p>
+    <p>
+    Key: {{this.created_at}}
+    </p>
+{{/each}}
+</p>
+
