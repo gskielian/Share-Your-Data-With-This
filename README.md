@@ -1,6 +1,11 @@
 # angular-d3-node-mongo-live-website
 A site which has real-time graphs and doubles as mobile chart backend.
 
+<p align="center">
+  <img src="./public/img/current-look.png">
+</p>
+
+
 # Technologies
 
 * node.js
