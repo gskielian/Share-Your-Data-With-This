@@ -7,10 +7,14 @@ A site which has real-time graphs and doubles as mobile chart backend.
 * express.js
 * express-handlebars.js -- my favorite view engine
 * mongodb
-* angular.js -- coming next
-* d3.js -- coming next, next
+* angular.js
+* d3.js
+* nvd3.js -- live charts based on d3 and angular.js
 
 # Notes
+
+
+#### keeping `./bower_components` directory in `./public`
 
 These technologies have an active communities of developers/maintainers; 
 
