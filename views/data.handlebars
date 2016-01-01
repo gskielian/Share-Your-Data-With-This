@@ -5,23 +5,32 @@ collection is: {{collection}}
 </p>
 
 
-<p>
-{{objects}}
-</p>
-<p>
-{{#each objects}}
-    <p>
-    Key: {{@key}}
-    </p>
-    <p>
-    Key: {{this.title}}
-    </p>
-    <p>
-    Key: {{this._id}}
-    </p>
-    <p>
-    Key: {{this.created_at}}
-    </p>
-{{/each}}
-</p>
+<h2>Chart Follows</h2>
+<div ng-app="angular-app">
+  <div ng-controller="myCtrl">
+    <nvd3 options="options" data="data"></nvd3>
+  </div>
+</div>
 
+
+<h2> individual data points </h2>
+<table>
+{{#each objects}}
+<tr>
+   {{#each this}}
+     <td>{{this}}</td>
+    {{/each}}
+</tr>
+{{/each}}
+</table>
+
+
+
+<!-- can access individual elements with this -->
+    <!-- Key: {{this.title}} -->
+    <!-- </p> -->
+    <!-- <p> -->
+    <!-- Key: {{this._id}} -->
+    <!-- </p> -->
+    <!-- <p> -->
+    <!-- Key: {{this.created_at}} -->
