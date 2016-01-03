@@ -1,5 +1,10 @@
-# angular-d3-node-mongo-live-website
-A site which has real-time graphs and doubles as mobile chart backend.
+# Angular-d3-node-mongo-live-website Template
+
+This is a template site with all the fixings for connecting data to the cloud (later on can just branch or fork into new projects). 
+
+Features include a real-time (as much real time as you need it) graph, that storse it's data on a Mongo db.
+
+Please star the project if you like it : D ! 
 
 <p align="center">
   <img src="./public/img/current-look.png" style="border-style:solid;border-width:1px;" width="40%">
