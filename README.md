@@ -34,7 +34,7 @@ Please star the project if you like it : D !
 4. finally, have some file update `data.txt` file, as angular polls this for the live number.
 
 
-# Interface for `get-ting` and `post-ing` stuff
+# Interface for `get`-ting and `post`-ing stuff
 
 
 #### example cli polling of data:
