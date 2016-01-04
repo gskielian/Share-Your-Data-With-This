@@ -1,5 +1,5 @@
 angular.module('angular-app', ['nvd3'])
-.controller('myCtrl', function($scope){
+.controller('myCtrl', function($scope, $http, $interval){
 
   /* Chart options */
   $scope.options = {
@@ -29,20 +29,39 @@ angular.module('angular-app', ['nvd3'])
     }
   };
 
-  /* Chart data */
-  $scope.data = [{
-    key: "Cumulative Return",
-    values: [
-      { "label" : "A" , "value" : -29.765957771107 },
-      { "label" : "B" , "value" : 0 },
-      { "label" : "C" , "value" : 32.807804682612 },
-      { "label" : "D" , "value" : 196.45946739256 },
-      { "label" : "E" , "value" : 0.19434030906893 },
-      { "label" : "F" , "value" : -98.079782601442 },
-      { "label" : "G" , "value" : -13.925743130903 },
-      { "label" : "H" , "value" : -5.1387322875705 }
-    ]
-  }];
+  //do once before polling
+  var req = {
+    method: 'GET',
+    url: 'http://localhost:3000/items',
+    headers: {
+      'Accept': 'application/json, text/plain'
+    }
+  };
+
+  $http(req).then(function(response) {
+    console.log("hello");
+    console.log(response.data);
+    $scope.data = [{
+      key: "Cumulative Return",
+      values: response.data
+    }];
+  });
+
+  //note, this is how to create a function in Angular.js
+  $scope.callAtInterval = function () {
+    $http(req).then(function(response) {
+      console.log("hello");
+      console.log(response.data);
+      $scope.data = [{
+        key: "Cumulative Return",
+        values: response.data
+      }];
+    });
+
+  };
+
+  //poll for new data once a second
+  $interval( function(){ $scope.callAtInterval(); }, 1000);
 
   $scope.config = {
     visible: true, // default: true

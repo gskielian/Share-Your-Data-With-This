@@ -1,4 +1,5 @@
 # angular-d3-node-mongo-live-website
+
 A site which has real-time graphs and doubles as mobile chart backend.
 
 <p align="center">
@@ -16,8 +17,41 @@ A site which has real-time graphs and doubles as mobile chart backend.
 * d3.js
 * nvd3.js -- live charts based on d3 and angular.js
 
-# Notes
 
+# Interface for `get-ting` and `post-ing` stuff
+
+
+#### example cli polling of data:
+
+`curl -H "Accept: application/json"  "http://localhost:3000/items/"`
+
+example stdout:
+
+```sh
+[{"_id":"5689996069a8129d33198c85","value":"74"}]
+```
+
+#### example of posting data:
+
+optionally can use curl or the wrapped version of this `./server_script.sh` in a loop:
+
+```sh
+curl -H "Content-Type: application/json" -X POST -d '{"value":"42"}' http://localhost:3000/items
+```
+#### example cli get all:
+
+`curl -H "Accept: application/json"  "http://localhost:3000/items/getall"`
+
+
+#### updating/replacing a value
+
+replace `{das_id}` with the unique id for the entry you need to replace (see `example cli get all` entry right above)
+
+```sh
+curl -H "Content-Type: application/json" -X PUT -d '{"value":"180"}' http://localhost:3000/items/{das_id}
+```
+
+# Notes
 
 #### keeping `./bower_components` directory in `./public`
 

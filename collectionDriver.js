@@ -24,6 +24,18 @@ CollectionDriver.prototype.findAll = function(collectionName, callback) {
     });
 };
 
+CollectionDriver.prototype.findRecent = function(collectionName, callback) {
+    this.getCollection(collectionName, function(error, the_collection) { //A
+      if( error ) callback(error);
+      else {
+        the_collection.find().sort({$natural:-1}).limit(1).toArray(function(error, results) { //B
+          if( error ) callback(error);
+          else callback(null, results);
+        });
+      }
+    });
+};
+
 
 CollectionDriver.prototype.get = function(collectionName, id, callback) { //A
   this.getCollection(collectionName, function(error, the_collection) {
@@ -45,7 +57,7 @@ CollectionDriver.prototype.save = function(collectionName, obj, callback) {
       if( error ) {
         callback(error);
       } else {
-        obj.created_at = new Date(); //B
+        //obj.created_at = new Date(); //B
         the_collection.insert(obj, function() { //C
           callback(null, obj);
         });

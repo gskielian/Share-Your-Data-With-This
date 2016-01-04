@@ -77,7 +77,24 @@ app.get('/static-example', function (req, res) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 app.get('/:collection', function(req, res) { //A
   var params = req.params; //B
-  collectionDriver.findAll(req.params.collection, function(error, objs) { //C
+  // collectionDriver.findAll(req.params.collection, function(error, objs) { //C
+  collectionDriver.findRecent(req.params.collection, function(error, objs) { //C
+    if (error) { res.send(400, error); } //D
+    else { 
+      if (req.accepts('html')) { //E
+        res.render('data',{objects: objs, collection: req.params.collection}); //F
+      } else {
+        res.set('Content-Type','application/json'); //G
+        res.status(200).send(objs); //H
+      }
+    }
+  });
+});
+
+app.get('/:collection/getall', function(req, res) { //A
+  var params = req.params; //B
+   collectionDriver.findAll(req.params.collection, function(error, objs) { //C
+  //collectionDriver.findRecent(req.params.collection, function(error, objs) { //C
     if (error) { res.send(400, error); } //D
     else { 
       if (req.accepts('html')) { //E
