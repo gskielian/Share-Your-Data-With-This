@@ -23,15 +23,11 @@ Please star the project if you like it : D !
 
 # Setup
 
-1\. `sudo service mongod start` -- bring up the database
-
-2\. `node index.js` -- start the server
-
-3\. in a separate shell (or background process):
-
-`watch ./server_script.sh` -- I use `watch` for compactness, but can always make a more complicated script
-
-4\. finally, have some file update `data.txt` file, as angular polls this for the live number.
+0\. `npm install #install dependencies`
+1\. `sudo service mongod start #bring up the database`
+2\. `node index.js #start the node-app`
+3\. `watch ./server_script.sh #or equivalent way of putting data from data.txt to mongo`
+4\.  Have some file update `data.txt` file, as angular polls this for the live number.
 
 
 # Interface for `get`-ting and `post`-ing stuff
