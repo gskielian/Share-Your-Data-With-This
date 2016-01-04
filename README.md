@@ -1,8 +1,8 @@
 # Angular-d3-node-mongo-live-website Template
 
-This is a template site with all the fixings for connecting data to the cloud (later on can just branch or fork into new projects). 
+This is a template site with all the fixings for connecting data to the cloud (later on can just branch or fork into new projects).
 
-Features include a real-time (as much real time as you need it) graph, that storse it's data on a Mongo db.
+Features include a real-time (as much real time as you need it) graph, that stores its data on a Mongo db.
 
 Please star the project if you like it : D !
 
