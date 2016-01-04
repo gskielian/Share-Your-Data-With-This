@@ -1,0 +1,31 @@
+{
+  "name": "angular-d3-node-mongo-live-website",
+  "version": "1.0.0",
+  "description": "package demoing how to create a site with real-time graphs that doubles as mobile chart backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gskielian/angular-d3-node-mongo-live-website.git"
+  },
+  "keywords": [
+    "angular",
+    "d3",
+    "node",
+    "mongo"
+  ],
+  "author": "Gregory Sean Kielian",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gskielian/angular-d3-node-mongo-live-website/issues"
+  },
+  "homepage": "https://github.com/gskielian/angular-d3-node-mongo-live-website#readme",
+  "dependencies": {
+    "body-parser": "^1.14.2",
+    "express": "^4.13.3",
+    "express-handlebars": "^2.0.1",
+    "mongodb": "1.3.23"
+  }
+}
