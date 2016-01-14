@@ -23,11 +23,13 @@ Please star the project if you like it : D !
 
 # Setup
 
+0. `sudo apt-get install curl # if you don't have curl`
 1. `npm install #install dependencies`
 2. `sudo service mongod start #bring up the database`
 3. `node index.js #start the node-app`
 4. `watch ./server_script.sh #or equivalent way of putting data from data.txt to mongo`
 5.  Have some file update `data.txt` file, as angular polls this for the live number.
+6.  if not using localhost (i.e. deploying on server): update url and/or ports in index.js, server-script.js,  and ./public/angular-app.js
 
 
 # Interface for `get`-ting and `post`-ing stuff
