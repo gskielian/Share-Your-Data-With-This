@@ -7,7 +7,7 @@ Features include a real-time (as much real time as you need it) graph, that stor
 Please star the project if you like it : D !
 
 <p align="center">
-  <img src="./public/img/current-look.png" style="border-style:solid;border-width:1px;" width="40%">
+  <img src="./public/img/2016-01-13_look.png" style="border-style:solid;border-width:1px;" width="40%">
 </p>
 
 
