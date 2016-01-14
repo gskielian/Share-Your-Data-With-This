@@ -1,67 +1,22 @@
-angular.module('angular-app', ['nvd3'])
-.controller('myCtrl', function($scope, $http, $interval){
 
-  /* Chart options */
-  $scope.options = {
-    chart: {
-      type: 'discreteBarChart',
-      height: 450,
-      margin : {
-        top: 20,
-        right: 20,
-        bottom: 60,
-        left: 55
-      },
-      x: function(d){ return d.label; },
-      y: function(d){ return d.value; },
-      showValues: true,
-      valueFormat: function(d){
-        return d3.format(',.4f')(d);
-      },
-      transitionDuration: 500,
-      xAxis: {
-        axisLabel: 'X Axis'
-      },
-      yAxis: {
-        axisLabel: 'Y Axis',
-        axisLabelDistance: 30
-      }
-    }
+var app = angular.module('angular-app', ['nvd3']);
+
+
+//custom filter for reversing ng-repeat order
+app.filter('reverse', function() {
+  return function(items) {
+    return items.slice().reverse();
   };
+});
 
-  //do once before polling
-  var req = {
-    method: 'GET',
-    url: 'http://localhost:3000/items',
-    headers: {
-      'Accept': 'application/json, text/plain'
-    }
-  };
 
-  $http(req).then(function(response) {
-    console.log("hello");
-    console.log(response.data);
-    $scope.data = [{
-      key: "Cumulative Return",
-      values: response.data
-    }];
-  });
+//this makes it compat with handlebars
+app.config(function($interpolateProvider) {
+  $interpolateProvider.startSymbol('{[{');
+  $interpolateProvider.endSymbol('}]}');
+});
 
-  //note, this is how to create a function in Angular.js
-  $scope.callAtInterval = function () {
-    $http(req).then(function(response) {
-      console.log("hello");
-      console.log(response.data);
-      $scope.data = [{
-        key: "Cumulative Return",
-        values: response.data
-      }];
-    });
-
-  };
-
-  //poll for new data once a second
-  $interval( function(){ $scope.callAtInterval(); }, 1000);
+app.controller('myChart',  function($scope, $http, $interval){
 
   $scope.config = {
     visible: true, // default: true
@@ -73,5 +28,69 @@ angular.module('angular-app', ['nvd3'])
     deepWatchDataDepth: 2, // default: 2
     debounce: 10 // default: 10
   };
+
+
+  $scope.options = {
+    chart: {
+      type: 'lineChart',
+      height: 180,
+      margin : {
+        top: 20,
+        right: 20,
+        bottom: 40,
+        left: 55
+      },
+      x: function(d){ return d.x; },
+      y: function(d){ return d.y; },
+      useInteractiveGuideline: true,
+      duration: 500,    
+      yAxis: {
+        tickFormat: function(d){
+          return d3.format('.01f')(d);
+        }
+      }
+    }
+  };
+
+  $scope.options.chart.duration = 0;
+  $scope.options.chart.yDomain = [-400,400];
+
+  $scope.data = [{ values: [], key: 'Random Walk' }];
+
+  $scope.run = true;
+ 
+
+  var x = 0;
+
+  var req = {
+    method: 'GET',
+    url: 'http://localhost:3000/items',
+    headers: {
+      'Accept': 'application/json, text/plain'
+    }
+  };
+
+  $http(req).then(function(response) {
+    if (!$scope.run) return;
+    $scope.data[0].values.push({ x: x,  y: response.data[0].value});
+    if ($scope.data[0].values.length > 100) $scope.data[0].values.shift();
+    x++;
+  });
+
+  //note, this is how to create a function in Angular.js
+  $scope.callAtInterval = function () {
+    $http(req).then(function(response) {
+      if (!$scope.run) return;
+      $scope.data[0].values.push({ x: x,  y: response.data[0].value});
+      if ($scope.data[0].values.length > 100) $scope.data[0].values.shift();
+      x++;
+    });
+  };
+
+  //poll for new data once a second
+  setInterval( function(){
+    $scope.callAtInterval();
+      $scope.$apply(); // update both chart
+  }, 1000);
 
 });
