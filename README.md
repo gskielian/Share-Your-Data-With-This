@@ -1,6 +1,6 @@
-# Angular-d3-node-mongo-live-website Template
+# Provided for your copypasta
 
-This is a template site with all the fixings for connecting data to the cloud (later on can just branch or fork into new projects).
+This is an open-sourced template site with all the fixings for beaming your data to the cloud, and displaying on a website with d3.graphs.
 
 Features include a real-time (as much real time as you need it) graph, that stores its data on a Mongo db.
 
@@ -10,6 +10,10 @@ Please star the project if you like it : D !
   <img src="./public/img/2016-01-13_lookcurrent.png" style="border-style:solid;border-width:1px;" width="40%">
 </p>
 
+# Todo
+
+* make an extensible dashboard template/example
+* add twitter boostrap theme to upgrade UI
 
 # Technologies
 
